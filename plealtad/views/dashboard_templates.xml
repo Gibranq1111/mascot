@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Template para cuando el programa de lealtad está inactivo -->
+    <template id="loyalty_inactive" name="Programa de Lealtad Inactivo">
+        <t t-call="portal.portal_layout">
+            <div class="container">
+                <div class="alert alert-warning" role="alert">
+                    <h4 class="alert-heading">Programa de Lealtad Inactivo</h4>
+                    <p>Tu cuenta aún no está activada en el programa de lealtad. 
+                       Por favor, contacta a soporte para activar tu cuenta.</p>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- Template principal del dashboard -->
+    <template id="loyalty_dashboard" name="Dashboard de Lealtad">
+        <t t-call="portal.portal_layout">
+            <div class="container py-4">
+                <!-- Encabezado -->
+                <div class="row mb-4">
+                    <div class="col">
+                        <h1 class="display-4">Mi Programa de Lealtad</h1>
+                        <p class="lead">Bienvenido/a, <t t-esc="user_id.name"/></p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de puntos -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card bg-primary text-white">
+                            <div class="card-body">
+                                <h5 class="card-title">Mis Puntos</h5>
+                                <h2 class="display-3">
+                                    <t t-esc="'%.2f' % loyalty_points"/>
+                                </h2>
+                                <p class="card-text">puntos disponibles</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Información del programa -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Detalles del Programa</h5>
+                            </div>
+                            <div class="card-body">
+                                <t t-if="is_loyalty_active">
+                                    <ul class="list-unstyled">
+                                        <li class="mb-2">
+                                            <strong>Programa:</strong>
+                                            <span t-field="loyalty_program.name"/>
+                                        </li>
+                                        <li class="mb-2">
+                                            <strong>Puntos Actuales:</strong>
+                                            <span t-esc="'%.2f' % loyalty_points"/>
+                                        </li>
+                                        <li class="mb-2">
+                                            <strong>Estado:</strong>
+                                            <span class="badge bg-success">Activo</span>
+                                        </li>
+                                    </ul>
+                                </t>
+                                <t t-else="">
+                                    <p class="text-muted">No hay información disponible del programa.</p>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

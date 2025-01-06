@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Template de Verificación -->
+        <record id="email_template_loyalty_verification" model="mail.template">
+            <field name="name">Programa de Lealtad: Verificación de Correo</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="subject">Verifica tu correo para el Programa de Lealtad</field>
+            <field name="email_from">{{ user.company_id.email }}</field>
+            <field name="email_to">{{ object.email }}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p>Hola {{ object.name }},</p>
+                    <p>Gracias por registrarte en nuestro Programa de Lealtad.</p>
+                    <p>Para activar tu cuenta, por favor haz clic en el siguiente enlace:</p>
+                    <div style="margin: 16px 0px 16px 0px; text-align: center;">
+                        <a href="{{ ctx.get('base_url') }}/plealtad/verify/{{ object.verification_token }}"
+                           style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">
+                            Verificar mi cuenta
+                        </a>
+                    </div>
+                    <p>Este enlace es válido por 24 horas.</p>
+                    <br/>
+                    <p>¡Gracias!</p>
+                </div>
+            </field>
+        </record>
+
+        <!-- Template de Bienvenida -->
+        <record id="email_template_loyalty_welcome" model="mail.template">
+            <field name="name">Programa de Lealtad: Bienvenida</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="subject">¡Bienvenido al Programa de Lealtad!</field>
+            <field name="email_from">{{ user.company_id.email }}</field>
+            <field name="email_to">{{ object.email }}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p>¡Hola {{ object.name }}!</p>
+                    <p>Tu cuenta ha sido verificada exitosamente. ¡Bienvenido a nuestro Programa de Lealtad!</p>
+                    <p>Beneficios de tu membresía:</p>
+                    <ul>
+                        <li>10% de descuento en tu primera compra</li>
+                        <li>5 puntos por cada peso gastado</li>
+                        <li>Acceso a promociones exclusivas</li>
+                    </ul>
+                    <p>Para iniciar sesión, visita:</p>
+                    <div style="margin: 16px 0px 16px 0px; text-align: center;">
+                        <a href="{{ ctx.get('base_url') }}/plealtad/login"
+                           style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">
+                            Iniciar Sesión
+                        </a>
+                    </div>
+                    <br/>
+                    <p>¡Gracias por ser parte de nuestro programa!</p>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

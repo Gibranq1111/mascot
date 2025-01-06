@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Programa de Lealtad por Defecto -->
+        <record id="default_loyalty_program" model="loyalty.program">
+            <field name="name">Programa de Lealtad Estándar</field>
+            <field name="program_type">loyalty</field>
+            <field name="trigger">auto</field>
+            <field name="applies_on">both</field>
+            <field name="portal_visible" eval="True"/>
+            <field name="portal_point_name">Puntos</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="active" eval="True"/>
+        </record>
+
+        <!-- Regla de Puntos Base (5 puntos por peso) -->
+        <record id="default_loyalty_rule" model="loyalty.rule">
+            <field name="program_id" ref="default_loyalty_program"/>
+            <field name="reward_point_mode">money</field>
+            <field name="reward_point_amount">5</field>
+            <field name="minimum_amount">1.0</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <!-- Recompensa de Primera Compra -->
+        <record id="first_purchase_reward" model="loyalty.reward">
+            <field name="program_id" ref="default_loyalty_program"/>
+            <field name="reward_type">discount</field>
+            <field name="discount">10</field>
+            <field name="discount_mode">percent</field>
+            <field name="discount_applicability">order</field>
+            <field name="description">10% de descuento en primera compra</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <!-- Recompensas por Redención de Puntos -->
+        <record id="points_reward_50" model="loyalty.reward">
+            <field name="program_id" ref="default_loyalty_program"/>
+            <field name="reward_type">discount</field>
+            <field name="required_points">500</field>
+            <field name="discount">50</field>
+            <field name="discount_mode">fixed_amount</field>
+            <field name="description">$50 de descuento por 500 puntos</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="points_reward_100" model="loyalty.reward">
+            <field name="program_id" ref="default_loyalty_program"/>
+            <field name="reward_type">discount</field>
+            <field name="required_points">1000</field>
+            <field name="discount">100</field>
+            <field name="discount_mode">fixed_amount</field>
+            <field name="description">$100 de descuento por 1000 puntos</field>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+    </data>
+</odoo>

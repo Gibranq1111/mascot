@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Categoría para el programa de lealtad -->
+        <record id="module_category_loyalty" model="ir.module.category">
+            <field name="name">Programa de Lealtad</field>
+            <field name="description">Gestión del programa de lealtad para clientes</field>
+            <field name="sequence">20</field>
+        </record>
+
+        <!-- Grupo para usuarios del programa de lealtad -->
+        <record id="group_loyalty_user" model="res.groups">
+            <field name="name">Usuario</field>
+            <field name="category_id" ref="module_category_loyalty"/>
+        </record>
+
+        <!-- Grupo para administradores del programa de lealtad -->
+        <record id="group_loyalty_manager" model="res.groups">
+            <field name="name">Administrador</field>
+            <field name="category_id" ref="module_category_loyalty"/>
+            <field name="implied_ids" eval="[(4, ref('group_loyalty_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+        </record>
+
+        <!-- Reglas de acceso para loyalty.card -->
+        <record id="loyalty_card_personal_rule" model="ir.rule">
+            <field name="name">Tarjetas de Lealtad Personales</field>
+            <field name="model_id" ref="loyalty.model_loyalty_card"/>
+            <field name="domain_force">[('partner_id','=',user.partner_id.id)]</field>
+            <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <!-- Regla de acceso para administradores de loyalty.card -->
+        <record id="loyalty_card_manager_rule" model="ir.rule">
+            <field name="name">Gestión de Tarjetas de Lealtad</field>
+            <field name="model_id" ref="loyalty.model_loyalty_card"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_loyalty_manager'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <!-- Reglas de acceso para loyalty.program -->
+        <record id="loyalty_program_public_rule" model="ir.rule">
+            <field name="name">Programas de Lealtad Públicos</field>
+            <field name="model_id" ref="loyalty.model_loyalty_program"/>
+            <field name="domain_force">[('portal_visible','=',True)]</field>
+            <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <!-- Regla de acceso para administradores de loyalty.program -->
+        <record id="loyalty_program_manager_rule" model="ir.rule">
+            <field name="name">Gestión de Programas de Lealtad</field>
+            <field name="model_id" ref="loyalty.model_loyalty_program"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_loyalty_manager'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <!-- Reglas de acceso para loyalty.rule -->
+        <record id="loyalty_rule_public_rule" model="ir.rule">
+            <field name="name">Reglas de Lealtad Públicas</field>
+            <field name="model_id" ref="loyalty.model_loyalty_rule"/>
+            <field name="domain_force">[('program_id.portal_visible','=',True)]</field>
+            <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <!-- Regla de acceso para administradores de loyalty.rule -->
+        <record id="loyalty_rule_manager_rule" model="ir.rule">
+            <field name="name">Gestión de Reglas de Lealtad</field>
+            <field name="model_id" ref="loyalty.model_loyalty_rule"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_loyalty_manager'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <!-- Reglas de acceso para loyalty.reward -->
+        <record id="loyalty_reward_public_rule" model="ir.rule">
+            <field name="name">Recompensas de Lealtad Públicas</field>
+            <field name="model_id" ref="loyalty.model_loyalty_reward"/>
+            <field name="domain_force">[('program_id.portal_visible','=',True)]</field>
+            <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <!-- Regla de acceso para administradores de loyalty.reward -->
+        <record id="loyalty_reward_manager_rule" model="ir.rule">
+            <field name="name">Gestión de Recompensas de Lealtad</field>
+            <field name="model_id" ref="loyalty.model_loyalty_reward"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_loyalty_manager'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <!-- Reglas de acceso para los loggers -->
+        <!-- Field Logger -->
+        <record id="field_logger_public_rule" model="ir.rule">
+            <field name="name">Field Logger Público</field>
+            <field name="model_id" ref="model_field_logger"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <!-- Loyalty Logger -->
+        <record id="loyalty_logger_user_rule" model="ir.rule">
+            <field name="name">Loyalty Logger Usuario</field>
+            <field name="model_id" ref="model_loyalty_logger"/>
+            <field name="domain_force">[('user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('group_loyalty_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="loyalty_logger_manager_rule" model="ir.rule">
+            <field name="name">Loyalty Logger Manager</field>
+            <field name="model_id" ref="model_loyalty_logger"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_loyalty_manager'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+    </data>
+</odoo>

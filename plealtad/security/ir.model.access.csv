@@ -1,0 +1,24 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_field_logger_user,field.logger access for users,model_field_logger,base.group_user,1,1,1,1
+access_field_logger_system,field.logger access for system,model_field_logger,base.group_system,1,1,1,1
+access_loyalty_program_portal,loyalty.program.portal,loyalty.model_loyalty_program,base.group_portal,1,0,0,0
+access_loyalty_program_user,loyalty.program.user,loyalty.model_loyalty_program,plealtad.group_loyalty_user,1,0,0,0
+access_loyalty_program_manager,loyalty.program.manager,loyalty.model_loyalty_program,plealtad.group_loyalty_manager,1,1,1,1
+access_loyalty_card_portal,loyalty.card.portal,loyalty.model_loyalty_card,base.group_portal,1,0,0,0
+access_loyalty_card_user,loyalty.card.user,loyalty.model_loyalty_card,plealtad.group_loyalty_user,1,1,1,0
+access_loyalty_card_manager,loyalty.card.manager,loyalty.model_loyalty_card,plealtad.group_loyalty_manager,1,1,1,1
+access_loyalty_rule_portal,loyalty.rule.portal,loyalty.model_loyalty_rule,base.group_portal,1,0,0,0
+access_loyalty_rule_user,loyalty.rule.user,loyalty.model_loyalty_rule,plealtad.group_loyalty_user,1,0,0,0
+access_loyalty_rule_manager,loyalty.rule.manager,loyalty.model_loyalty_rule,plealtad.group_loyalty_manager,1,1,1,1
+access_loyalty_reward_portal,loyalty.reward.portal,loyalty.model_loyalty_reward,base.group_portal,1,0,0,0
+access_loyalty_reward_user,loyalty.reward.user,loyalty.model_loyalty_reward,plealtad.group_loyalty_user,1,0,0,0
+access_loyalty_reward_manager,loyalty.reward.manager,loyalty.model_loyalty_reward,plealtad.group_loyalty_manager,1,1,1,1
+access_loyalty_logger_user,loyalty.logger.user,model_loyalty_logger,plealtad.group_loyalty_user,1,1,1,0
+access_loyalty_logger_manager,loyalty.logger.manager,model_loyalty_logger,plealtad.group_loyalty_manager,1,1,1,1
+access_field_logger_portal,field.logger.portal,model_field_logger,base.group_portal,1,0,0,0
+access_field_logger_manager,field.logger.manager,model_field_logger,plealtad.group_loyalty_manager,1,1,1,1
+access_loyalty_verification,loyalty.verification,model_loyalty_verification,base.group_user,1,1,1,0
+access_loyalty_history_user,loyalty.history.user,model_loyalty_history,base.group_user,1,1,1,0
+access_loyalty_history_portal,loyalty.history.portal,model_loyalty_history,base.group_portal,1,0,0,0
+access_loyalty_history_manager,loyalty.history.manager,model_loyalty_history,plealtad.group_loyalty_manager,1,1,1,1
+

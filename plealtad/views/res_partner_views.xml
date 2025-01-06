@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Heredar vista de formulario del partner -->
+        <record id="view_partner_form_inherit_loyalty" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit.loyalty</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page 
+                        string="Programa de Lealtad" 
+                        name="loyalty_program" 
+                        invisible="is_company == True">
+                        <group>
+                            <group>
+                                <field name="loyalty_program_id" readonly="1"/>
+                                <field name="points" readonly="1"/>
+                                <field name="is_loyalty_active" readonly="1"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,73 @@
+// plealtad/static/src/scss/loyalty_style.scss
+
+// Estilos básicos para el programa de lealtad
+.o_loyalty_dashboard {
+    .loyalty-card {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+        .loyalty-points {
+            color: #007bff;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .loyalty-program-name {
+            color: #6c757d;
+            text-align: center;
+            margin-top: 10px;
+        }
+    }
+
+    .loyalty-actions {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+    }
+}
+
+// Estilos para el formulario de registro de lealtad
+.o_loyalty_register {
+    .register-form {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+    }
+}
+
+// Estilos para la tarjeta de lealtad
+.o_loyalty_card {
+    background-color: #007bff;
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+
+    .card-points {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .card-expiration {
+        font-size: 14px;
+        opacity: 0.8;
+    }
+}
